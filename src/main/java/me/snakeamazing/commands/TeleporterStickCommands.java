@@ -63,6 +63,7 @@ public class TeleporterStickCommands implements CommandClass {
     }
 
     @ACommand(names = "give", permission = "tpstick.admin")
+    @Usage(usage = "Use this command to give the stick to a player")
     public boolean giveToPlayerCommand(@Injected(true) CommandSender sender, OfflinePlayer target){
 
         if (sender instanceof Player) {
