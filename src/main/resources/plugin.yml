@@ -1,0 +1,8 @@
+main: me.snakeamazing.TeleporterStick
+version: ${project.version}
+name: TeleporterStick
+author: SnakeAmazing
+
+permissions:
+  tpstick.admin:
+    default: op

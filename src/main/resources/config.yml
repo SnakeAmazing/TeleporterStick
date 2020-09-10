@@ -1,0 +1,17 @@
+##Config for TeleporterStick
+##
+##
+items:
+  teleporter-stick:
+    delay: 3
+    position: 7
+    name: '&d&lTeletransportador'
+    lore:
+      - '&eClick para teletransportarte'
+
+    blocks-to-teleport: 5
+
+messages:
+  prohibed: '&cNo puedes teletransportarte alli!'
+  player-not-found: '&cEl jugador no existe!'
+  delay-message: '&cDebes esperar 3 segundos para usar el teletransporte de nuevo'
