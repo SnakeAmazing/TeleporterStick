@@ -3,6 +3,7 @@
 ##
 items:
   teleporter-stick:
+    give-stick-on-join: true
     delay: 3
     position: 7
     name: '&d&lTeletransportador'

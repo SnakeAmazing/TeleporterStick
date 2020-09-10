@@ -24,7 +24,7 @@ public class OnPlayerJoin implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (player.hasPermission("tpstick.join")) {
+        if (config.getBoolean("items.teleporter-stick.give-stick-on-join")) {
 
             ItemStack stickItem = new ItemStack(Material.STICK, 1);
 
