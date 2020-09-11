@@ -17,6 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import team.unnamed.gui.item.type.ItemBuilder;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -43,21 +44,16 @@ public class TeleporterStickCommands implements CommandClass {
 
         Player player = (Player) sender;
 
-        ItemStack stickItem = new ItemStack(Material.STICK, 1);
+        ItemStack stick = ItemBuilder.newBuilder(
+                Material.STICK,
+                1)
+                .name(config.getString("items.teleporter-stick.name"))
+                .lore(config.getStringList("items.teleporter-stick.lore"))
+                .addEnchant(Enchantment.DURABILITY, 3)
+                .addFlag(ItemFlag.HIDE_ATTRIBUTES)
+                .build();
 
-        ItemMeta meta = stickItem.getItemMeta();
-
-        meta.setDisplayName(config.getString("items.teleporter-stick.name"));
-
-        meta.setLore(config.getStringList("items.teleporter-stick.lore"));
-
-        meta.addEnchant(Enchantment.DURABILITY, 3, true);
-
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-
-        stickItem.setItemMeta(meta);
-
-        player.getInventory().setItem(config.getInt("items.teleporter-stick.position"), stickItem);
+        player.getInventory().setItem(config.getInt("items.teleporter-stick.position"), stick);
 
         return true;
     }
@@ -79,21 +75,16 @@ public class TeleporterStickCommands implements CommandClass {
 
         if (target.isOnline()){
 
-            ItemStack stickItem = new ItemStack(Material.STICK, 1);
+            ItemStack stick = ItemBuilder.newBuilder(
+                    Material.STICK,
+                    1)
+                    .name(config.getString("items.teleporter-stick.name"))
+                    .lore(config.getStringList("items.teleporter-stick.lore"))
+                    .addEnchant(Enchantment.DURABILITY, 3)
+                    .addFlag(ItemFlag.HIDE_ATTRIBUTES)
+                    .build();
 
-            ItemMeta meta = stickItem.getItemMeta();
-
-            meta.setDisplayName(config.getString("items.teleporter-stick.name"));
-
-            meta.setLore(config.getStringList("items.teleporter-stick.lore"));
-
-            meta.addEnchant(Enchantment.DURABILITY, 3, true);
-
-            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-
-            stickItem.setItemMeta(meta);
-
-            target.getPlayer().getInventory().setItem(config.getInt("items.teleporter-stick.position"), stickItem);
+            target.getPlayer().getInventory().setItem(config.getInt("items.teleporter-stick.position"), stick);
 
         } else {
             player.sendMessage(config.getString("messages.player-not-found"));

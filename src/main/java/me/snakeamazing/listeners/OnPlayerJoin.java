@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import team.unnamed.gui.item.type.ItemBuilder;
 
 public class OnPlayerJoin implements Listener {
 
@@ -26,21 +27,16 @@ public class OnPlayerJoin implements Listener {
 
         if (config.getBoolean("items.teleporter-stick.give-stick-on-join")) {
 
-            ItemStack stickItem = new ItemStack(Material.STICK, 1);
+            ItemStack stick = ItemBuilder.newBuilder(
+                    Material.STICK,
+                    1)
+                    .name(config.getString("items.teleporter-stick.name"))
+                    .lore(config.getStringList("items.teleporter-stick.lore"))
+                    .addEnchant(Enchantment.DURABILITY, 3)
+                    .addFlag(ItemFlag.HIDE_ATTRIBUTES)
+                    .build();
 
-            ItemMeta meta = stickItem.getItemMeta();
-
-            meta.setDisplayName(config.getString("items.teleporter-stick.name"));
-
-            meta.setLore(config.getStringList("items.teleporter-stick.lore"));
-
-            meta.addEnchant(Enchantment.DURABILITY, 3, true);
-
-            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-
-            stickItem.setItemMeta(meta);
-
-            player.getInventory().setItem(config.getInt("items.teleporter-stick.position"), stickItem);
+            player.getInventory().setItem(config.getInt("items.teleporter-stick.position"), stick);
         }
     }
 }
