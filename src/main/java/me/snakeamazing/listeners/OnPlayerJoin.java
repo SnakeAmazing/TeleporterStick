@@ -26,7 +26,19 @@ public class OnPlayerJoin implements Listener {
         Player player = event.getPlayer();
 
         if (config.getBoolean("items.teleporter-stick.give-stick-on-join")) {
+            ItemStack stick = ItemBuilder.newBuilder(
+                    Material.STICK,
+                    1)
+                    .name(config.getString("items.teleporter-stick.name"))
+                    .lore(config.getStringList("items.teleporter-stick.lore"))
+                    .addEnchant(Enchantment.DURABILITY, 3)
+                    .addFlag(ItemFlag.HIDE_ATTRIBUTES)
+                    .build();
 
+            player.getInventory().setItem(config.getInt("items.teleporter-stick.position"), stick);
+        }
+
+        if (player.hasPermission("tpstick.onjoin")) {
             ItemStack stick = ItemBuilder.newBuilder(
                     Material.STICK,
                     1)
