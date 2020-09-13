@@ -3,9 +3,7 @@ package me.snakeamazing.listeners;
 import me.snakeamazing.TeleporterStick;
 import me.snakeamazing.utils.FileManager;
 import me.snakeamazing.utils.FileMatcher;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -53,15 +51,16 @@ public class OnPlayerInteract implements Listener {
 
                     if (!(loc.getBlock().getType().isSolid()) || loc.getBlock().getType().isTransparent()){
                         player.teleport(loc);
+                        player.playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1);
+                        player.getWorld().playEffect(player.getLocation(), Effect.SMOKE, 50 ,8);
+                        player.getWorld().playEffect(player.getEyeLocation(), Effect.INSTANT_SPELL, 50, 8);
                         cooldownTimer.put(player.getUniqueId(), System.currentTimeMillis());
                         cooldown(3, player);
-
                     } else {
                         player.sendMessage(config.getString("messages.prohibed"));
                     }
                 }
             }
-
         }
     }
     public void cooldown(int seconds, Player player) {

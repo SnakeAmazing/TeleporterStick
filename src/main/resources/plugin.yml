@@ -6,3 +6,5 @@ author: SnakeAmazing
 permissions:
   tpstick.admin:
     default: op
+  tpstick.onjoin:
+    default: false
